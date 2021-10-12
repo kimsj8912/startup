@@ -20,6 +20,6 @@ void loop() {
 }
 
 int toggle_state(int toggle) {
-  toggle = count % 2;
+  toggle = count % 2; // count는 1초가 지날 때마다 1씩 증가하므로 toggle을 2로 나눈 나머지로 설정하여 LED 깜빡임 제어
   return toggle;
 }
