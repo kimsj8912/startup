@@ -57,10 +57,12 @@ void loop() {
     analogWrite(PIN_LED, 255);
   }
   else {
+    // dist_min 과 dist_max 의 중간값보다 dist_raw 가 작으면 밝기 증가
     if(dist_raw > dist_min && dist_raw < (dist_min + dist_max) * 0.5) {
       right = -2.55 * dist_raw + 500;
       analogWrite(PIN_LED, right);
     }
+    // dist_min 과 dist_max 의 중간값보다 dist_raw 가 크면 밝기 감소
     else if(dist_raw < dist_max && dist_raw > (dist_min + dist_max) * 0.5) {
       right = 2.55 * dist_raw - 500;
       analogWrite(PIN_LED, right);
@@ -81,7 +83,7 @@ float USS_measure(int TRIG, int ECHO)
   delayMicroseconds(10);
   digitalWrite(TRIG, LOW);
   reading = pulseIn(ECHO, HIGH, timeout) * scale; // unit: mm
-  if(reading < dist_min || reading > dist_max) reading = dist_raw; // return 0 when out of range.
+  if(reading < dist_min || reading > dist_max) reading = dist_raw; // 범위를 벗어나면 이전 측정값을 
   return reading;
   // Pulse duration to distance conversion example (target distance = 17.3m)
   // - round trip distance: 34.6m
