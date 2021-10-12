@@ -83,7 +83,7 @@ float USS_measure(int TRIG, int ECHO)
   delayMicroseconds(10);
   digitalWrite(TRIG, LOW);
   reading = pulseIn(ECHO, HIGH, timeout) * scale; // unit: mm
-  if(reading < dist_min || reading > dist_max) reading = dist_raw; // 범위를 벗어나면 이전 측정값을 
+  if(reading < dist_min || reading > dist_max) reading = dist_raw; // 범위를 벗어나면 이전 측정값을 반환
   return reading;
   // Pulse duration to distance conversion example (target distance = 17.3m)
   // - round trip distance: 34.6m
