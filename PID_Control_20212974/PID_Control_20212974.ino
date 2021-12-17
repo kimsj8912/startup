@@ -35,7 +35,7 @@
 
 // PID parameters
 #define _KP 1
-#define _KD 50
+#define _KD 55
 #define _KI 2
 
 
